@@ -1,5 +1,16 @@
+import os
+import datetime
+import re
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
+from behave.log_capture import capture
+
+FAILED_SCREENSHOT_DIR_PATH = "./failed_screenshots/"
+
+@capture
+def before_all(context):
+    if not os.path.exists(FAILED_SCREENSHOT_DIR_PATH):
+        os.makedirs(FAILED_SCREENSHOT_DIR_PATH)
 
 def before_scenario(context, scenario):
     options = webdriver.ChromeOptions()
@@ -16,3 +27,10 @@ def before_scenario(context, scenario):
     
 def after_scenario(context, scenario):
     context.browser.quit()
+
+@capture
+def after_step(context, step):
+    if step.status == 'failed':
+        fileName = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S_') + step.name + "_failed.png"
+        # 用正規表示法取代檔名不接受的字元
+        context.browser.save_screenshot(FAILED_SCREENSHOT_DIR_PATH + re.sub(r":|\/", "-", fileName))

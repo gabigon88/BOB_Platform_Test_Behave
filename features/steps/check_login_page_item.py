@@ -47,4 +47,3 @@ def step_impl(context, page_url_tag):
     context.browser.switch_to.window(context.browser.window_handles[1])
     sleep(1) # 新分頁有跳轉的動作，要等待跳轉完畢才獲取url
     assert page_url_tag in context.browser.current_url
-    context.browser.close()
