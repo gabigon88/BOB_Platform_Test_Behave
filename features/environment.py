@@ -21,8 +21,7 @@ def before_scenario(context, scenario):
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
     options.add_experimental_option('useAutomationExtension', False) # Disable Chrome Extension
     context.browser = webdriver.Chrome(chrome_options=options)
-    # driver.implicitly_wait(10) # 隱性等待，全域影響，最長只等10秒
-    context.browser.get("https://www.bob2010.com/entry/login")
+    context.browser.implicitly_wait(20) # 隱性等待，全域影響，最長只等20秒
     context.wait = WebDriverWait(context.browser, 10)
     
 def after_scenario(context, scenario):
@@ -32,5 +31,5 @@ def after_scenario(context, scenario):
 def after_step(context, step):
     if step.status == 'failed':
         fileName = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S_') + step.name + "_failed.png"
-        # 用正規表示法取代檔名不接受的字元
+        # 用正規表示法, 把檔名不能使用的特殊字元換成 "-"
         context.browser.save_screenshot(FAILED_SCREENSHOT_DIR_PATH + re.sub(r":|\/", "-", fileName))

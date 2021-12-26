@@ -6,7 +6,7 @@ from time import sleep
 # given-----------------------------------------------
 @given('I open login page')
 def step_impl(context):
-    pass
+    context.browser.get("https://www.bob2010.com/entry/login")
 
 
 # when-----------------------------------------------

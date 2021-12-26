@@ -1,6 +1,17 @@
-# BOB_Platform_Test
-## BOB平台自動化測試
+# BOB_Platform_Test_Behave
+BOB體育(https://www.alltkd.com/)的自動化測試
+使用python的BDD框架 - behave來執行
 
-| 完成時間   | 用例庫ID | 用例標題                |
-| ---------- | -------- | ----------------------- |
-| 2020/04/06 | 040      | [登入] 登入頁面項目確認 |
+## 執行指令
+```python
+  behave -v
+```
+## Testcase涵蓋
+
+| 完成時間    | Testcase標題          | 對應檔案         |
+| ---------- | --------------------- | --------------- |
+| 2020/04/06 | [登入] 登入頁面項目確認 | test_login_page |
+
+## 未完成部分
+- [x] 把原先的寫法轉成pageObject pattern  
+- [ ] 把pageObject引進testcase裡使用  
