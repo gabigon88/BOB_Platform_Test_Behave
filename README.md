@@ -1,5 +1,5 @@
 # BOB_Platform_Test_Behave
-BOB體育(https://www.alltkd.com/)的自動化測試
+BOB體育(https://www.alltkd.com/) 的自動化測試
 使用python的BDD框架 - behave來執行
 
 ## 執行指令
